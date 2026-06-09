@@ -1,7 +1,7 @@
 const ACCESS_CODE = "lospollostech.web.cr.rq";
 
-// UTENTE PREDEFINITO
-let users = JSON.parse(localStorage.getItem("users")) || [
+// UTENTE GIA' REGISTRATO
+let users = [
     {
         username: "gustavo.fring.hsnbrg1010",
         password: "lospollos+T-"
@@ -9,42 +9,44 @@ let users = JSON.parse(localStorage.getItem("users")) || [
 ];
 
 // ELEMENTI
-const loginTab = document.getElementById("loginTab");
-const registerTab = document.getElementById("registerTab");
+const tabLogin = document.getElementById("tabLogin");
+const tabRegister = document.getElementById("tabRegister");
 
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 
 // SWITCH TAB
-loginTab.onclick = () => {
+tabLogin.onclick = () => {
     loginForm.style.display = "block";
     registerForm.style.display = "none";
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
 };
 
-registerTab.onclick = () => {
+tabRegister.onclick = () => {
     loginForm.style.display = "none";
     registerForm.style.display = "block";
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
+    tabRegister.classList.add("active");
+    tabLogin.classList.remove("active");
 };
 
 // LOGIN
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const u = loginUser.value;
-    const p = loginPass.value;
+    const username = document.getElementById("loginUser").value;
+    const password = document.getElementById("loginPass").value;
 
-    const found = users.find(x => x.username === u && x.password === p);
+    const user = users.find(u =>
+        u.username === username && u.password === password
+    );
 
-    if (found) {
-        localStorage.setItem("loggedUser", u);
+    if (user) {
         alert("Accesso riuscito!");
+        localStorage.setItem("user", username);
         window.location.href = "dashboard.html";
     } else {
-        document.getElementById("loginMsg").textContent = "Credenziali errate";
+        document.getElementById("loginMsg").innerText = "❌ Login errato";
     }
 });
 
@@ -52,22 +54,23 @@ loginForm.addEventListener("submit", (e) => {
 registerForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const u = regUser.value;
-    const p = regPass.value;
-    const code = regCode.value;
+    const username = document.getElementById("regUser").value;
+    const password = document.getElementById("regPass").value;
+    const code = document.getElementById("regCode").value;
+
+    const msg = document.getElementById("registerMsg");
 
     if (code !== ACCESS_CODE) {
-        document.getElementById("regMsg").textContent = "Codice accesso errato";
+        msg.innerText = "❌ Codice accesso sbagliato";
         return;
     }
 
-    if (users.some(x => x.username === u)) {
-        document.getElementById("regMsg").textContent = "Username già esistente";
+    if (users.find(u => u.username === username)) {
+        msg.innerText = "❌ Username già esistente";
         return;
     }
 
-    users.push({ username: u, password: p });
-    localStorage.setItem("users", JSON.stringify(users));
+    users.push({ username, password });
 
-    document.getElementById("regMsg").textContent = "Account creato!";
+    msg.innerText = "✅ Account creato!";
 });
