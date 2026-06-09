@@ -2,15 +2,15 @@ body {
 margin: 0;
 font-family: Arial;
 background: #0b1a12;
-color: white;
 display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
+color: white;
 }
 
 .box {
-width: 360px;
+width: 340px;
 padding: 20px;
 background: #132a1c;
 border-radius: 10px;
@@ -20,7 +20,9 @@ text-align: center;
 input {
 width: 90%;
 padding: 8px;
-margin: 5px;
+margin: 5px 0;
+border: none;
+border-radius: 5px;
 }
 
 button {
@@ -30,6 +32,7 @@ margin-top: 8px;
 background: #5CFF8A;
 border: none;
 cursor: pointer;
+font-weight: bold;
 }
 
 .hidden {
