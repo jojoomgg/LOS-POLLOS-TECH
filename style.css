@@ -17,19 +17,14 @@ body {
     text-align: center;
 }
 
-h1 {
-    color: #5CFF8A;
-    margin-bottom: 5px;
-}
-
 .tabs {
     display: flex;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .tabs button {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border: none;
     cursor: pointer;
     background: #1f3a29;
@@ -43,23 +38,15 @@ h1 {
 
 input {
     width: 90%;
-    padding: 8px;
     margin: 5px 0;
-    border: none;
-    border-radius: 5px;
+    padding: 8px;
 }
 
 button {
     width: 95%;
     padding: 8px;
     margin-top: 8px;
-    border: none;
-    border-radius: 5px;
     background: #5CFF8A;
-    font-weight: bold;
+    border: none;
     cursor: pointer;
-}
-
-p {
-    font-size: 12px;
 }
