@@ -1,79 +1,65 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f1a12;
-    color: #e6ffe6;
+    font-family: Arial;
+    background: #0d1b12;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: white;
 }
 
-.container {
-    width: 350px;
-    padding: 25px;
-    background: #13251a;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,255,100,0.2);
+.box {
+    width: 320px;
+    padding: 20px;
+    background: #132a1c;
+    border-radius: 10px;
     text-align: center;
 }
 
 h1 {
+    color: #5CFF8A;
     margin-bottom: 5px;
-    color: #7CFF8A;
-}
-
-.subtitle {
-    font-size: 12px;
-    opacity: 0.7;
-    margin-bottom: 20px;
 }
 
 .tabs {
     display: flex;
-    margin-bottom: 15px;
+    margin: 10px 0;
 }
 
 .tabs button {
     flex: 1;
-    padding: 10px;
+    padding: 8px;
     border: none;
     cursor: pointer;
-    background: #1d3a28;
+    background: #1f3a29;
     color: white;
 }
 
 .tabs button.active {
-    background: #2cff7a;
+    background: #5CFF8A;
     color: black;
-    font-weight: bold;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
 }
 
 input {
+    width: 90%;
+    padding: 8px;
     margin: 5px 0;
-    padding: 10px;
     border: none;
-    border-radius: 6px;
-    outline: none;
+    border-radius: 5px;
 }
 
-button[type="submit"] {
-    margin-top: 10px;
-    padding: 10px;
+button {
+    width: 95%;
+    padding: 8px;
+    margin-top: 8px;
     border: none;
-    background: #2cff7a;
-    color: black;
+    border-radius: 5px;
+    background: #5CFF8A;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 6px;
 }
 
 p {
     font-size: 12px;
-    margin-top: 8px;
 }
