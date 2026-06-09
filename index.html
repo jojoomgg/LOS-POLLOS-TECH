@@ -13,9 +13,11 @@
     <h1>🐔 Los Pollos Tech</h1>
 
     <form id="loginForm">
-        <input id="user" placeholder="Username">
-        <input id="pass" type="password" placeholder="Password">
-        <button>Login</button>
+        <input id="username" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+
+        <button type="submit">Login</button>
+
         <p id="msg"></p>
     </form>
 
@@ -23,14 +25,10 @@
 
 <div id="dashboard" class="box hidden">
 
-    <h2>Dashboard Admin 🧠</h2>
+    <h2>Dashboard 🧠</h2>
     <p id="welcome"></p>
 
-    <button onclick="showUsers()">👥 Gestisci utenti</button>
-    <button onclick="showBuilder()">🧩 Builder</button>
     <button onclick="logout()">🚪 Logout</button>
-
-    <div id="panel"></div>
 
 </div>
 
