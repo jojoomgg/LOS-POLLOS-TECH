@@ -1,76 +1,94 @@
-const ACCESS_CODE = "lospollostech.web.cr.rq";
+// LOGIN UNICO
+const ADMIN_USER = "gustavo.fring.hsnbrg1010";
+const ADMIN_PASS = "gusfring.ofc.admn+1010";
 
-// UTENTE BASE (demo sempre presente)
-const baseUsers = [
-    {
-        username: "gustavo.fring.hsnbrg1010",
-        password: "lospollos+T-"
-    }
-];
+// UTENTI (sessione)
+let users = JSON.parse(sessionStorage.getItem("users")) || [];
 
-// recupera utenti della sessione
-let users = JSON.parse(sessionStorage.getItem("users")) || baseUsers;
-
-// salva sempre nello storage sessione
-function saveUsers() {
-    sessionStorage.setItem("users", JSON.stringify(users));
+// SAVE
+function save() {
+sessionStorage.setItem("users", JSON.stringify(users));
 }
 
 // ELEMENTI
-const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
-
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
-
-// SWITCH TAB
-loginBtn.addEventListener("click", () => {
-    loginForm.style.display = "block";
-    registerForm.style.display = "none";
-});
-
-registerBtn.addEventListener("click", () => {
-    loginForm.style.display = "none";
-    registerForm.style.display = "block";
-});
+const loginBox = document.getElementById("loginBox");
+const dashboard = document.getElementById("dashboard");
 
 // LOGIN
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+loginForm.addEventListener("submit", e => {
+e.preventDefault();
 
-    const u = loginUser.value;
-    const p = loginPass.value;
+const u = user.value;
+const p = pass.value;
 
-    const found = users.find(x => x.username === u && x.password === p);
+if (u === ADMIN_USER && p === ADMIN_PASS) {
+loginBox.classList.add("hidden");
+dashboard.classList.remove("hidden");
 
-    if (found) {
-        sessionStorage.setItem("loggedUser", u);
-        alert("Accesso OK (sessione)");
-    } else {
-        document.getElementById("loginMsg").innerText = "❌ login errato";
-    }
+welcome.innerText = "Benvenuto Admin " + u;
+} else {
+msg.innerText = "❌ Accesso negato";
+}
 });
 
-// REGISTER
-registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+// LOGOUT
+function logout() {
+location.reload();
+}
 
-    const u = regUser.value;
-    const p = regPass.value;
-    const c = regCode.value;
+// 👥 MOSTRA UTENTI
+function showUsers() {
+let html = "<h3>Utenti</h3>";
 
-    if (c !== ACCESS_CODE) {
-        document.getElementById("regMsg").innerText = "❌ codice errato";
-        return;
-    }
+if (users.length === 0) {
+html += "<p>Nessun utente creato</p>";
+}
 
-    if (users.some(x => x.username === u)) {
-        document.getElementById("regMsg").innerText = "❌ username già esistente";
-        return;
-    }
-
-    users.push({ username: u, password: p });
-    saveUsers();
-
-    document.getElementById("regMsg").innerText = "✅ creato (temporaneo)";
+users.forEach((u, i) => {
+html += `
+<div>
+${u.username}
+<button onclick="deleteUser(${i})">❌ elimina</button>
+</div>
+`;
 });
+
+// CREAZIONE UTENTE
+html += `
+<hr>
+<h3>Crea utente</h3>
+<input id="newUser" placeholder="Username">
+<input id="newPass" placeholder="Password">
+<button onclick="createUser()">➕ crea</button>
+`;
+
+panel.innerHTML = html;
+}
+
+// ➕ CREA UTENTE
+function createUser() {
+const u = document.getElementById("newUser").value;
+const p = document.getElementById("newPass").value;
+
+if (!u || !p) return;
+
+users.push({ username: u, password: p });
+save();
+
+showUsers();
+}
+
+// ❌ ELIMINA UTENTE
+function deleteUser(i) {
+users.splice(i, 1);
+save();
+showUsers();
+}
+
+// 🧩 BUILDER (placeholder)
+function showBuilder() {
+panel.innerHTML = `
+<h3>🧩 Builder</h3>
+<p>Qui aggiungeremo editor siti HTML/CSS/JS</p>
+`;
+}
