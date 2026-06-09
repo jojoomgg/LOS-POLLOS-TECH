@@ -11,28 +11,27 @@
 <div class="box">
 
     <h1>🐔 Los Pollos Tech</h1>
-    <p>Login / Registrazione</p>
 
     <div class="tabs">
-        <button id="tabLogin" class="active">Login</button>
-        <button id="tabRegister">Registrati</button>
+        <button type="button" id="loginBtn" class="active">Login</button>
+        <button type="button" id="registerBtn">Registrati</button>
     </div>
 
     <!-- LOGIN -->
     <form id="loginForm">
-        <input id="loginUser" placeholder="Username" required>
-        <input id="loginPass" type="password" placeholder="Password" required>
-        <button>Accedi</button>
+        <input id="loginUser" placeholder="Username">
+        <input id="loginPass" type="password" placeholder="Password">
+        <button type="submit">Accedi</button>
         <p id="loginMsg"></p>
     </form>
 
     <!-- REGISTER -->
     <form id="registerForm" style="display:none;">
-        <input id="regUser" placeholder="Username" required>
-        <input id="regPass" type="password" placeholder="Password" required>
-        <input id="regCode" placeholder="Codice accesso" required>
-        <button>Registrati</button>
-        <p id="registerMsg"></p>
+        <input id="regUser" placeholder="Username">
+        <input id="regPass" type="password" placeholder="Password">
+        <input id="regCode" placeholder="Codice accesso">
+        <button type="submit">Registrati</button>
+        <p id="regMsg"></p>
     </form>
 
 </div>
